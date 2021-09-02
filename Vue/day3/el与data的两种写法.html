@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识VUE</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>你好，{{name}}</h1>
+</div>
+<script type="text/javascript">
+    // 阻止vue启动时生成生产提示
+    Vue.config.productionTip = false
+    let vue = new Vue({
+        // el: '#root',   // 第一种写法
+        // data: {  对象式
+        //     name: '张三',
+        //     url:'https://www.baidu.com'
+        // }
+
+        // 第二种写法函数式
+        data:function() {
+            return{
+                name:'张三'
+            }
+        }
+    });
+    vue.$mount('#root')   // 第二种写法
+
+
+
+</script>
+</body>
+</html>
