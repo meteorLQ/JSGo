@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let变量</title>
+</head>
+<body>
+    <script>
+        // let 声明变量
+        let a;
+        let b,c,d;
+        let g='fsjfjs',h=[];
+        // let a;
+        // 1.变量不能重复声明  报错 Uncaught SyntaxError: Identifier 'start' has already been declared
+        let start=1;
+        // let start=2
+        // 2.块作用域，全局，函数，eval
+        {
+            let n=1;
+        }
+        // console.log(n)  报错 Uncaught ReferenceError: n is not defined
+        // 3.不存在变量提升
+        console.log(m)
+        // let m='12313123';
+        var m='12313123';  //输出undefined
+
+        // 4.不影响作用域链
+        {
+            let school='北京大学';
+            function fn() {
+                console.log(school)
+            }
+            fn()
+        }
+
+    </script>
+</body>
+</html>

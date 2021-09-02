@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let练习</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="page-header">点击更换颜色</h2>
+    <div class="item">11</div>
+    <div class="item2">22</div>
+    <div class="item3">33</div>
+</div>
+<script>
+    // 获取div元素对象
+  let items=document.getElementsByClassName("container")
+    // 遍历并绑定事件
+    for (let i = 0; i <items.length ; i++) {
+        items[i].onclick=function (){
+            // 修改当前元素的背景颜色
+            // this.style.background='pink';
+            items[i].style.background='pink';
+        }
+    }
+    // console.log(i)
+</script>
+</body>
+</html>
