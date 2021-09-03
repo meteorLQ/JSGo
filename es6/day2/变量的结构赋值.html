@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的结构赋值</title>
+</head>
+<body>
+    <script>
+        // ES6允许按照一定模式从数组和对象中提取值,对变量进行赋值,这被称为解购赋值
+        // 1.数组的结构
+        const F4=['1','2','3','4'];
+        let [xiao,liu,li,song]=F4;
+        console.log(xiao)
+        console.log(liu)
+        console.log(li)
+        console.log(song)
+        // 2.对象的解构
+        const tian={
+            name:'天河一号',
+            age:'110',
+            tong:function () {
+                console.log("你好")
+            }
+        }
+        let {name,age,tong}=tian;
+        console.log(name)
+        tong();
+
+    </script>
+</body>
+</html>
