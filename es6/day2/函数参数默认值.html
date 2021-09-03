@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数参数默认值</title>
+</head>
+<body>
+<script>
+    // es6允许给函数参数赋值初始值
+    // 1. 形参初始值 具有默认值的参数
+    let x = (a, b, c=3) => a+b+c
+    console.log(x(1,2,10))
+    // 2.与解构赋值结合
+    function connect({name,age='500',height}) {
+        console.log(name)
+        console.log(age)
+        console.log(height)
+    }
+    connect({
+        name:'秦天柱',
+        // age:'100',
+        height: '300'
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简化对象写法</title>
+</head>
+<body>
+<script>
+    let name = '张三';
+    let study = function () {
+        console.log("好好学习,天天向上")
+    }
+
+    const stu = {
+        name,
+        study,
+        run() {
+            console.log("努力奔跑")
+        }
+    }
+    console.log(stu)
+</script>
+</body>
+</html>
