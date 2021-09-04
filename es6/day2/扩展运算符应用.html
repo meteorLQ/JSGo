@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扩展运算符应用</title>
+</head>
+<body>
+<script>
+    // 数组的合并
+    const a = [1, 2, 3, 4];
+    const b = [5, 6, 7];
+    // let numbers = a.concat(b);
+    const numbers = [...a, ...b];
+    console.log(numbers);
+    // 数组的克隆
+    const c = ['a', 'b', 'c'];
+    const d=[...c];
+    console.log(d);
+    // 将伪数组转化为真正的数组
+    const divs=document.querySelectorAll('div');
+    // console.log(divs);
+    const div=[...divs];
+    console.log(div);
+</script>
+</body>
+</html>

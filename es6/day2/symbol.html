@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>symbol</title>
+</head>
+<body>
+  <script>
+      // 创建Symbol
+      let s=Symbol();
+      console.log(s,typeof s)
+      let s1=Symbol('1')
+      let s2=Symbol('1')
+      console.log(s1===s2)
+      // Symbol.for创建
+      let s4=Symbol.for('2');
+      let s5=Symbol.for('2');
+      console.log(s4===s5)
+      // symbol不能与其他数据进行运算
+
+      // js中的七种数据类型
+      // USONB you are so niubility
+      // u undefined
+      // s string symbol
+      // o object
+      // n null number
+      // b boolean
+
+
+  </script>
+</body>
+</html>
