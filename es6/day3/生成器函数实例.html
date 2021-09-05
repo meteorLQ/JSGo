@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器函数实例</title>
+</head>
+<body>
+<script>
+  // 异步编程 文件操作 网络操作（ajax request）
+  // 1s 后控制台输入111 2s 输出222 3s后输出333
+  function one() {
+      setTimeout(()=>{
+          console.log(111)
+          iter.next();
+      },1000)
+  }
+  function two() {
+      setTimeout(()=>{
+          console.log(222)
+          iter.next();
+      },2000)
+  }
+  function three() {
+      setTimeout(()=>{
+          console.log(333)
+          iter.next();
+
+      },3000)
+  }
+
+  function * gen(){
+      yield one();
+      yield two();
+      yield three();
+  }
+
+  let iter = gen();
+  iter.next();
+
+
+</script>
+</body>
+</html>

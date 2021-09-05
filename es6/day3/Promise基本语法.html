@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise基本语法</title>
+</head>
+<body>
+<script>
+    // 实例化Promise 对象
+    const p = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            let data='数据库中的用户数据';
+            resolve(data);
+            let errData='获取数据失败';
+            // reject(errData);
+        },1000)
+    });
+
+    // 调用 promise对象的then方法
+    p.then(function (value) {
+        console.log(value);
+    },function (reason) {
+        console.error(reason);
+    })
+    
+    
+</script>
+</body>
+</html>
