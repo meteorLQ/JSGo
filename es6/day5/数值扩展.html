@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数值扩展</title>
+</head>
+<body>
+<script>
+    // 0.Number.EPSILON是JavaScript表示的最小精度
+    // EPSILON 属性的值接近于2.2204460492503...
+    function equal(a, b) {
+        if (Math.abs(a - b) < Number.EPSILON) {
+            return true;
+        }
+        return false;
+    }
+    console.log(equal(0.1+0.2,0.3))
+
+</script>
+</body>
+</html>

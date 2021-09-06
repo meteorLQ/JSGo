@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get 和 set </title>
+</head>
+<body>
+<script>
+    class Phone {
+        get price() {
+            console.log("价格属性被读取了");
+            return '价格';
+        }
+
+        set price(newVal){
+            console.log('价格属性被修改')
+        }
+    }
+
+    // 实例化对象
+    let phone = new Phone();
+
+    console.log(phone.price);
+    phone.price='12313';
+
+</script>
+</body>
+</html>
