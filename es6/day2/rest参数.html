@@ -6,8 +6,21 @@
 </head>
 <body>
 <script>
-    // TODO 未完
-    // ES6
+    // ES6 引入rest参数，用户获取函数的实参，用来代替arguments
+    // ES5 获取实参的方式
+    // function date() {
+    //     console.log(arguments);
+    // }
+    // date('奥迪','宝马','奔驰');
+
+    // ES6获取的结果是一个数组
+    function date(...args) {
+        console.log(args);
+    }
+    date('奥迪','宝马','奔驰');
+
+    // rest参数必须要放到参数最后
+
 </script>
 
 </body>

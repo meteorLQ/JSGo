@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生产器函数</title>
+</head>
+<body>
+<script>
+    function * gen(arg) {
+        console.log(arg)
+        let one=yield 111;
+        console.log(one)
+        let two=yield 222;
+        console.log(two)
+        let three= yield 333;
+        console.log(three)
+    }
+    let iter = gen('aaa');
+    console.log(iter.next())
+    console.log(iter.next('AAA'))
+    console.log(iter.next('BBB'))
+    console.log(iter.next('CCC'))
+</script>
+</body>
+</html>

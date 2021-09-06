@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol内置值</title>
+</head>
+<body>
+<script>
+    class Person{
+        static [Symbol.hasInstance](agrs){
+            console.log("检测类型调用")
+            console.log(agrs)
+        }
+    }
+    let o={
+        name:'1'
+    }
+    console.log(o instanceof Person)
+</script>
+</body>
+</html>

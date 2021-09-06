@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set实践</title>
+</head>
+<body>
+<script>
+    let arr=[1,2,2,3,7,4,5,6,7];
+    //1.数组去重
+    let set = [...new Set(arr)];
+    console.log(set)
+    //2.交集
+    let  arr2=[1,2,4,5,8];
+    let res = set.filter(item=>{
+        let s2=new Set(arr2);
+        if (s2.has(item)){
+            return true;
+        }else {
+            return false;
+        }
+    });
+    console.log(res);
+    //3.并集
+        let bingji=[...new Set([...arr,...arr2])];
+        console.log(bingji)
+    //4.差集
+    let res1 = set.filter(item=> !new Set(arr2).has(item));
+    console.log(res1);
+</script>
+</body>
+</html>
