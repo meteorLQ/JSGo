@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6模块化导入方式</title>
+</head>
+<body>
+<script type="module">
+    // 结构赋值形式
+    import {name,call} from "../day5/js/m1.js";
+    import {school as sc} from "../day6/js/m2.js";
+    // import {default as m3 } from "../day6/js/m3.js";
+
+    console.log(name)
+    console.log(sc)
+    console.log(m3.school)
+    // 简便形式，针对默认暴露
+    import m3 from "../day6/js/m3.js";
+    console.log(m3.school)
+</script>
+</body>
+</html>
