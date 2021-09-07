@@ -6,14 +6,25 @@
 </head>
 <body>
 <script>
-    function phone() {
-        
+    // function phone() {
+    //
+    // }
+    // phone.name='手机';
+    // phone.prototype.price='3999';
+    // let mi = new phone();
+    // console.log(mi.name)
+    // console.log(mi.price)
+    class Phone{
+        static name='iphone';
+        static call(){
+            console.log("打电话")
+        }
     }
-    phone.name='手机';
-    phone.prototype.price='3999';
-    let mi = new phone();
-    console.log(mi.name)
-    console.log(mi.price)
+
+    let iphone = new Phone();
+    console.log(iphone.name);
+    console.log(Phone.name);
+    Phone.call();
 
 </script>
 </body>

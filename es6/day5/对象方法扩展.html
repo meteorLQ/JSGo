@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象方法扩展</title>
+</head>
+<body>
+<script>
+    // 1.Object.is 判断俩个值是否相等
+    console.log(Object.is(120, 121));
+    console.log(Object.is(NaN, NaN));
+    console.log(NaN === NaN);
+    // 2.Object.assign 对象的合并
+    const config1 = {
+        host: '2222',
+        test: '11'
+    };
+    const config2 = {
+        host: '3333',
+    };
+    console.log(Object.assign(config1, config2));
+    // 3.Object.setPrototypeOf Object.getPrototypeOf
+    const school={
+        name:'北京'
+    }
+
+    const xiaoqu={
+        tilte:['北京','上海']
+    }
+
+    Object.setPrototypeOf(school,xiaoqu);
+    console.log(school)
+    console.log(Object.getPrototypeOf(school))
+
+</script>
+</body>
+</html>
