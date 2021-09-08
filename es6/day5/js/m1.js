@@ -1,3 +1,4 @@
+// 分别暴露
 export let name = '擎天柱';
 
 export function call() {
