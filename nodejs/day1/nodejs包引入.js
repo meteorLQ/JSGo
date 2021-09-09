@@ -24,3 +24,9 @@ let fs = require("fs");
 console.log(h.a)
 console.log(h.x)
 h.call();
+console.log(arguments.callee)
+
+let r = require("./mode.exports和exports");
+console.log(r.name)
+console.log(r)
+r.add()
