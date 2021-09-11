@@ -5,7 +5,7 @@
  */
 
 
-const path = require('path');
+const {resolve} = require('path');
 module.exports = {
     // 入口起点
     entry: './src/index.js',
@@ -14,7 +14,7 @@ module.exports = {
         // 输出文件名
         filename: 'built.js',
         // 输出路径 __dirname nodejs的变量，代表当前文件的目录绝对路径
-        path: path(__dirname, 'build')
+        path: resolve(__dirname, 'build')
     },
     // loader的配置
     module: {
@@ -22,7 +22,7 @@ module.exports = {
         rules: [
             {
                 // 匹配哪些文件
-                test: /.css/,
+                test: /\.css$/,
                 // 使用哪些loader进行处理
                 use: [
                     // use数组中loader执行顺序：从右到左,从上到下 依次执行
@@ -38,6 +38,6 @@ module.exports = {
     plugins: [
         //详细plugins的配置
     ],
-    model: 'development'
-    // model: 'production'
+    mode: 'development'
+    // mode: 'production'
 }
