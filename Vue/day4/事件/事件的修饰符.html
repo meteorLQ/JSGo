@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的修饰符</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+
+        .demo1 {
+            height: 50px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<!--
+Vue中的事件修饰符
+1.prevent：阻止默认事件（常用）；
+2.stop:阻止事件冒泡
+3.once:事件只触发一次（常用）;
+4.capture:使用事件的捕获模式
+5.self:只有event.target是当前操作的元素是才触发事件
+6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+-->
+<body>
+<div id="root">
+    <h2>欢迎来到2022年</h2>
+    <!--1.prevent：阻止默认事件（常用）；-->
+    <a href="https://www.baidu.com" @click.prevent="showInfo">点击一下</a>
+    <!--2.stop:阻止事件冒泡-->
+    <div class="demo1" @click="showInfo">
+        <button @click.stop="showInfo">点我提示信息</button>
+    </div>
+    <!--3.once:事件只触发一次（常用）-->
+    <div>
+        <button @click.once="showInfo">点我提示信息</button>
+    </div>
+    <!--4.capture:使用事件的捕获模式-->
+
+    <!--5.self:只有event.target是当前操作的元素是才触发事件-->
+
+    <!--6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕-->
+
+</div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    let vue = new Vue({
+        el: '#root',
+        data: {},
+        methods: {
+            showInfo() {
+                alert('a标签默认事件');
+            }
+        }
+    });
+</script>
+</html>

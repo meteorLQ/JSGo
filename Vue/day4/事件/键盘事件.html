@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的修饰符</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>欢迎来到2022年</h2>
+    <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+</div>
+</body>
+<!--
+1.vue中常用的按键别名
+回车=> enter
+删除=> delete (捕获删除和退格)
+退出=>esc
+空格=> space
+换行=> tab
+上=> up
+下=> down
+左=> left
+右=> right
+2.vue中未提供别名的按键，可以使用按键原始的key值取绑定，但注意要转为kebab-case（短横线命名）
+3.系统修饰键（用法特殊）：ctrl、alt、shift、meta
+（1）配合keyup使用：按下修饰符的同时，再按下其他键，随后释放其他键，事件才被触发。
+ (2).配合keydown使用：正常触发事件
+4.也可以使用keyCode去指定具体的按键
+5.Vue.config.keyCodes.自定义健名=键码，可以去定制按键别名
+
+
+-->
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    let vue = new Vue({
+        el: '#root',
+        data: {},
+        methods: {
+            showInfo(e) {
+                alert(e.target.value);
+            }
+        }
+    });
+</script>
+</html>
