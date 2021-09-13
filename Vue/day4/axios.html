@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+<div id="root">
+    {{items}}}
+   <!-- <li v-for="item in items" :key="item.ofcNm">
+        {{item.ofcNm}}
+    </li>-->
+</div>
+
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    let vue = new Vue({
+        el: '#root',
+        data() {
+            return{
+            items:
+            [
+                {
+                    ofcId: null,
+                    ofcNm :null
+                }
+            ]
+            }
+        },
+        mounted() {
+            axios.get('http://localhost:8080/newol/olContract/selectDepartment').then(function (res) {
+                this.items = res.data;
+            })
+        }
+    });
+
+</script>
+</body>
+</html>
