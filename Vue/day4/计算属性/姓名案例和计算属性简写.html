@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例和计算属性简写</title>
+</head>
+<body>
+<div id="root">
+    <input type="text" v-model="firstName">
+    <br>
+    <br>
+    <input type="text" v-model="lastName">
+    <br>
+    <br>
+    姓名:<span>{{fullName}}</span>
+</div>
+</body>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    let vm = new Vue({
+        el: '#root',
+        data: {
+            firstName: '张',
+            lastName: '三'
+
+        },
+        computed: {
+            // get是什么时候调用？ 1.初次读取fullName时 2.所依赖的数据发生变化时
+            fullName() {
+                // 此处的this是vm
+                return this.firstName + "-" + this.lastName;
+            }
+
+        }
+    });
+</script>
+</html>
