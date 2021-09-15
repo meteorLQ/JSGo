@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例和插值语法实现</title>
+</head>
+<body>
+<div id="root">
+    <input type="text" v-model="firstName">
+    <br>
+    <br>
+    <input type="text" v-model="lastName">
+    <br>
+    <br>
+    姓名<span>{{fullName}}</span>
+</div>
+</body>
+<!--
+计算属性
+1，定义：要用的属性不存在，要通过已有的属性计算得来
+2.原理：第层借助了Object.defineproperty方法提供的getter和setter
+3.get函数什么时候执行?
+(1).初次读取时会执行一次?
+(2).当依赖的数据发生改变时会被再次调用
+4.优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。
+5.备注：
+计算属性最终会出现在vm上，直接读取使用即可。
+如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。
+
+-->
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    let vm = new Vue({
+        el: '#root',
+        data: {
+            firstName: '张',
+            lastName: '三'
+
+        },
+        computed: {
+            // get是什么时候调用？ 1.初次读取fullName时 2.所依赖的数据发生变化时
+            fullName: {
+                get() {
+                    // 此处的this是vm
+                    return this.firstName+"-"+this.lastName;
+                },
+                set(value){
+
+                }
+            }
+
+
+
+
+
+
+
+
+
+        }
+    });
+</script>
+</html>
