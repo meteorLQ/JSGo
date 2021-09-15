@@ -16,25 +16,16 @@
     new Vue({
         el: '#root',
         data: {
-            isHot: true
+            isHot:true
         },
-        methods: {
-            change() {
-                this.isHot = !this.isHot;
+        methods:{
+            change(){
+                this.isHot=!this.isHot;
             }
         },
-        computed: {
-            info() {
-                return this.isHot ? '炎热' : '凉爽';
-            }
-        },
-        watch: {
-            isHot: {
-                handler(nv,ov){
-                    console.log('nv'+nv)
-                    console.log('nv'+ov)
-                    console.log("发现属于被修改");
-                }
+        computed:{
+            info(){
+                return this.isHot?'炎热':'凉爽';
             }
         }
     })
