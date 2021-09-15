@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监视属性</title>
+</head>
+<body>
+<div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <button>切换天气</button>
+</div>
+</body>
+
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data: {
+            isHot:true
+        },
+        computed:{
+            info(){
+                return this.isHot?'炎热':'凉爽';
+            }
+        }
+    })
+</script>
+</html>
