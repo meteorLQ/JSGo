@@ -10,10 +10,17 @@
     <button v-on:click="change">切换天气</button>
 </div>
 </body>
-
+<!--
+监视属性watch:
+1.当被监视的属性变化时，回调函数自动调用，进行相关操作
+2.监视的属性必须存在，才能进行监视！！
+3.监视的两种写法：
+(1).new Vue时传入watch配置
+(2).通过vm.$watch监视
+-->
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript">
-    new Vue({
+    let vm=new Vue({
         el: '#root',
         data: {
             isHot: true
@@ -28,14 +35,26 @@
                 return this.isHot ? '炎热' : '凉爽';
             }
         },
-        watch: {
-            isHot: {
-                handler(nv,ov){
-                    console.log('nv'+nv)
-                    console.log('nv'+ov)
-                    console.log("发现属于被修改");
-                }
-            }
+        // 第一种写法
+        // watch: {
+        //     isHot: {
+        //         // 初始化时执行handler
+        //         immediate: true,
+        //         handler(nv, ov) {
+        //             console.log('nv' + nv)
+        //             console.log('nv' + ov)
+        //             console.log("发现属于被修改");
+        //         }
+        //     }
+        // }
+    })
+
+    vm.$watch('isHot',{
+        immediate: true,
+        handler(nv, ov) {
+            console.log('nv' + nv)
+            console.log('nv' + ov)
+            console.log("发现属于被修改");
         }
     })
 </script>
