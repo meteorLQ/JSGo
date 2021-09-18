@@ -8,10 +8,6 @@
 <div id="root">
     <h2>今天天气很{{info}}</h2>
     <button v-on:click="change">切换天气</button>
-    <h3>a的值是{{numbers.a}}</h3>
-    <button @click="numbers.a++">a加1</button>
-    <h3>b的值是{{numbers.b}}</h3>
-    <button @click="numbers.b++">b加1</button>
 </div>
 </body>
 <!--
@@ -22,11 +18,7 @@
     let vm = new Vue({
         el: '#root',
         data: {
-            isHot: true,
-            numbers: {
-                a: 1,
-                b: 1
-            }
+            isHot: true
         },
         methods: {
             change() {
@@ -39,20 +31,17 @@
             }
         },
         watch: {
-            // 监视多级属性结构中某个属性的变化
-            /*  'numbers.a':{
-                  handler(nv, ov) {
-                      console.log("a加1")
-                  }
-              }*/
-            numbers: {
-                // 监视多级属性结构中多个属性的变化
-                deep: true,
-                handler() {
-                    console.log("a加1")
-                }
-            }
+            // 简写
+            // isHot(nv, ov) {
+            //     console.log('nv' + nv)
+            //     console.log('nv' + ov)
+            //     console.log("发现属于被修改");
+            // }
         }
+    })
+
+    vm.$watch('isHot',function (nv, ov) {
+        console.log('isHot被修改了',nv,ov)
     })
 </script>
 </html>
