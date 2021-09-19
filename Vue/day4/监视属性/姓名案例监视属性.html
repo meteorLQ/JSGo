@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例监视属性</title>
+</head>
+<body>
+<div id="root">
+    <input type="text" v-model="firstName">
+    <br>
+    <br>
+    <input type="text" v-model="lastName">
+    <br>
+    <br>
+    姓名<span>{{fullName}}</span>
+</div>
+</body>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    let vm = new Vue({
+        el: '#root',
+        data: {
+            firstName: '张',
+            lastName: '三',
+            fullName:'张-三'
+        },
+        computed: {
+        },
+        watch:{
+            firstName(nv){
+                this.fullName=nv+'-'+this.lastName;
+            },
+            lastName(nv){
+                this.fullName=this.firstName+'-'+nv;
+            }
+        }
+    });
+</script>
+</html>
