@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表过滤</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <div>
+        <input type="text" placeholder="请输入姓名" v-model="keyWord">
+    </div>
+    <div>
+        <li v-for="p in filPersons" :key="p.id">{{p.name}}-{{p.age}}</li>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    /*let vue = new Vue({
+        el: '#root',
+        data: {
+            keyWord: '',
+            persons: [{
+                id: 1,
+                name: '马冬梅',
+                age: 20
+            }, {
+                id: 2,
+                name: '周冬雨',
+                age: 24
+            }, {
+                id: 3,
+                name: '周杰伦',
+                age: 18
+            }
+            ],
+            filPersons: [],
+        },
+        watch: {
+            keyWord: {
+                immediate: true,
+                handler(val) {
+                    this.filPersons = this.persons.filter((p) => {
+                        return p.name.indexOf(val) !== -1;
+                    })
+                }
+
+            }
+        }
+    });*/
+
+    // 使用computed实现
+    let vue = new Vue({
+        el: '#root',
+        data: {
+            keyWord: '',
+            persons: [{
+                id: 1,
+                name: '马冬梅',
+                age: 20
+            }, {
+                id: 2,
+                name: '周冬雨',
+                age: 24
+            }, {
+                id: 3,
+                name: '周杰伦',
+                age: 18
+            }
+            ]
+        },
+        computed: {
+            filPersons() {
+               return this.persons.filter((p) => {
+                    return p.name.indexOf(this.keyWord) !== -1;
+                })
+            }
+        }
+    });
+</script>
+</html>

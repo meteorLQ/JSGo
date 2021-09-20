@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非文件组件</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="root">
+        <school></school>
+        <school></school>
+        <school></school>
+        <school></school>
+</div>
+</body>
+
+<script>
+    Vue.config.productionTip = false
+    // 创建组件
+    const school = Vue.extend({
+        template: `
+          <div>
+          schoolName:{{ schoolName }}
+          <br>
+          address:{{ address }}
+          </div>
+        `,
+        data() {
+            return {
+                schoolName: '北京大学',
+                address: '北京'
+            }
+        }
+    })
+
+    // 创建vm
+    new Vue({
+        el: '#root',
+        components: {
+            school
+        }
+    })
+
+
+</script>
+</html>
