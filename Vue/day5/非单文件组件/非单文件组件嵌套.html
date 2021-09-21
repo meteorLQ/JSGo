@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非单文件组件嵌套</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="root">
+        <school></school>
+</div>
+</body>
+
+<script>
+    Vue.config.productionTip = false
+    // 创建组件
+    const student = Vue.extend({
+        template: `
+          <div>
+          studentName:{{ studentName }}
+          <br>
+          studentAge:{{ studentAge }}
+          </div>
+        `,
+        data() {
+            return {
+                studentName: '擎天柱',
+                studentAge: '110'
+            }
+        }
+    })
+
+    const school = Vue.extend({
+        template: `
+          <div>
+          schoolName:{{ schoolName }}
+          <br>
+          address:{{ address }}
+          <br>
+          <student></student>
+          </div>
+
+        `,
+        data() {
+            return {
+                schoolName: '北京大学',
+                address: '北京'
+            }
+        },
+        components:{
+            student
+        }
+    })
+
+
+
+    // 创建vm
+    new Vue({
+        el: '#root',
+        components: {
+            school
+        }
+    })
+
+
+</script>
+</html>
