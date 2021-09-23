@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h3>{{ msg }}</h3>
-    name:{{ name }}
+    studentName:{{studentName}}
     <br>
-    age:{{ age+1 }}
+    studentAge:{{studentAge}}
   </div>
 </template>
 
@@ -12,10 +11,10 @@ export default {
   name: "Student",
   data() {
     return {
-      msg: '我们是汽车人'
+      studentName: '擎天柱',
+      studentAge: '110'
     }
-
-  }, props: ['name', 'age']
+  }
 }
 </script>
 
