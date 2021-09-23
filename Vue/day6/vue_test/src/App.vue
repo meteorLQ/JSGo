@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Student name="擎天柱" age="110"></Student>
-    <Student name="大黄蜂"></Student>
+    <Student name="擎天柱" :age="110"></Student>
+    <Student ></Student>
   </div>
 </template>
 

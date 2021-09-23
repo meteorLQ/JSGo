@@ -15,7 +15,21 @@ export default {
       msg: '我们是汽车人'
     }
 
-  }, props: ['name', 'age']
+  },
+  // 简单声明接收
+  // props: ['name', 'age']
+  // 接收的同时对数据进行类型限制
+/*  props:{
+    name:String,
+    age:Number
+  }*/
+  props:{
+    name:{
+      type:String,
+      required:true
+    }
+  }
+
 }
 </script>
 
