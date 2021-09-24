@@ -1,28 +1,34 @@
 <template>
+  <!--   组件的结构-->
   <div>
-    <h2 @click="showName">name:{{name}}</h2>
-
-      <br>
-    <h2>studentAge:{{address}}</h2>
+    schoolName:{{ schoolName }}
+    <br>
+    address:{{ address }}
+    <br>
+    <span>11</span>
+    <Student/>
   </div>
+
 </template>
 
 <script>
-import Mixin from "../mixin.js"
-
-
+// 组件交互相关的代码（数据、方法等等）
+import Student from "./Student";
 export default {
-  name: "Student",
+  name:'School',
   data() {
     return {
-      name: '北京大学',
-      address: 'beijing'
+      schoolName: '北京大学',
+      address: '北京'
     }
   },
-  mixins:[Mixin]
+  components: {
+    Student
+  }
 }
+
 </script>
 
-<style scoped>
-
+<style>
+/*组件的样式*/
 </style>

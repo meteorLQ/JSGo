@@ -1,24 +1,20 @@
 <template>
   <div>
-   <h2 @click="showName">studentName:{{name}}</h2>
+    studentName:{{studentName}}
     <br>
-    studentAge:{{age}}
+    studentAge:{{studentAge}}
   </div>
 </template>
 
 <script>
-import Mixin from "../mixin.js"
-
 export default {
   name: "Student",
   data() {
     return {
-      name: '擎天柱',
-      age: '110'
+      studentName: '擎天柱',
+      studentAge: '110'
     }
-  },
-  mixins:[Mixin]
-
+  }
 }
 </script>
 
