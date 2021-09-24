@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <Student></Student>
-    <br>
-    <school/>
+    <Student name="擎天柱" :age="110"></Student>
+    <Student ></Student>
   </div>
 </template>
 
 <script>
 import Student from "./components/Student";
-import School from "./components/School";
-
 export default {
   name: 'App',
   components: {
-    Student,School
+    Student
   }
 }
 </script>
+
