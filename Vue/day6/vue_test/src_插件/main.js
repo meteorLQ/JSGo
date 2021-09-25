@@ -8,7 +8,8 @@ import Vue from 'vue'
 import App from './App.vue'
 // 关闭vue的生产提示
 Vue.config.productionTip = false
-
+import plugins from "./plugins";
+Vue.use(plugins)
 
 /**
  * 关于不同版本的Vue:
