@@ -6,9 +6,11 @@
 import Vue from 'vue'
 // 引入app组件,它是所有组件的父组件
 import App from './App.vue'
+// 引入vuex
+import Vuex from 'vuex'
 // 关闭vue的生产提示
 Vue.config.productionTip = false
-
+Vue.use(Vuex)
 
 /**
  * 关于不同版本的Vue:
