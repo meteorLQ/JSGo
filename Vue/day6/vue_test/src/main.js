@@ -6,12 +6,9 @@
 import Vue from 'vue'
 // 引入app组件,它是所有组件的父组件
 import App from './App.vue'
-// 引入vuex
-import Vuex from 'vuex'
+import store from './store'
 // 关闭vue的生产提示
 Vue.config.productionTip = false
-Vue.use(Vuex)
-
 /**
  * 关于不同版本的Vue:
  * 1.vue.js与vue.runtime.xxx.js的区别
@@ -24,6 +21,7 @@ Vue.use(Vuex)
 // 创建Vue实例对象---vm
 new Vue({
   el:'#app',
+  store,
   // 将App组件放入容器中
   render: h => h(App),
 })

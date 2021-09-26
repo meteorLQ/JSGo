@@ -6,9 +6,9 @@ module.exports={
     },
   },
   // 关闭eslint语法检测
-  lintOnSave: false,
+  lintOnSave: false
   // 开启代理服务器
-  devServer: {
-    proxy: 'http://localhost:9090'
-  }
+  // devServer: {
+  //   proxy: 'http://localhost:9090'
+  // }
 }

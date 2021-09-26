@@ -1,7 +1,7 @@
 <template>
   <!--   组件的结构-->
   <div>
-    <h1>当前求和为:{{ sum }}}</h1>
+    <h1>当前求和为:{{$store.state.sum}}</h1>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -22,14 +22,19 @@ export default {
   data() {
     return {
       n: 1, // 用户选择，默认1
-      sum: 0 // 当前和为零
     }
   },
   methods: {
     increment() {
-      this.sum+=this.n
+      this.$store.dispatch('add', this.n)
     },
     decrement() {
+
+    },
+    incrementOdd() {
+
+    },
+    incrementWait() {
 
     }
   }

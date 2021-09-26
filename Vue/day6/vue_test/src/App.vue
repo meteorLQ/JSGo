@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <Student></Student>
+    <count/>
   </div>
 </template>
 
 <script>
-import Student from "./components/Student";
-import School from "./components/School";
+import Count from "./components/Count";
 export default {
   name: 'App',
   components: {
-    Student
+    Count
   }
 }
 </script>
