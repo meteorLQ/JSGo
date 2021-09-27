@@ -6,11 +6,14 @@
 import Vue from 'vue'
 // 引入app组件,它是所有组件的父组件
 import App from './App.vue'
-//
+// 引入路由
 import VueRouter from 'vue-router'
 // 关闭vue的生产提示
 Vue.config.productionTip = false
+// 使用路由
 Vue.use(VueRouter)
+// 引入路由器
+import router from './router'
 /**
  * 关于不同版本的Vue:
  * 1.vue.js与vue.runtime.xxx.js的区别
@@ -25,4 +28,5 @@ new Vue({
   el:'#app',
   // 将App组件放入容器中
   render: h => h(App),
+  router:router
 })
