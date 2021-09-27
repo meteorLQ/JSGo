@@ -9,17 +9,17 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
-    <button @click="increment(n)">+</button>
-    <button @click="decrement(n)">-</button>
-    <button @click="incrementOdd(n)">当前求和为奇数再加</button>
-    <button @click="incrementWait(n)">等一等再加</button>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+    <button @click="incrementOdd">当前求和为奇数再加</button>
+    <button @click="incrementWait">等一等再加</button>
   </div>
 
 </template>
 
 <script>
 // 组件交互相关的代码（数据、方法等等）
-import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
 
 export default {
 
@@ -37,22 +37,20 @@ export default {
     ...mapGetters(['bigSum'])
   },
   methods: {
-    // increment() {
-    //   this.$store.commit('ADD', this.n)
-    // },
-    // decrement() {
-    //   this.$store.commit('DEC', this.n)
-    // },
-    // 借助mapMutations生成调用commit
-    ...mapMutations({increment:'ADD',decrement:'DEC'}),
-    // incrementOdd() {
-    //   this.$store.dispatch('addOdd', this.n)
-    // },
-    // incrementWait() {
-    //   this.$store.dispatch('addWait', this.n)
-    //
-    // }
-    ...mapActions({incrementOdd:'addOdd',incrementWait:'addWait'})
+    increment() {
+      this.$store.commit('ADD', this.n)
+    },
+    decrement() {
+      this.$store.commit('DEC', this.n)
+
+    },
+    incrementOdd() {
+      this.$store.dispatch('addOdd', this.n)
+    },
+    incrementWait() {
+      this.$store.dispatch('addWait', this.n)
+
+    }
   }
 }
 
