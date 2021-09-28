@@ -2,9 +2,12 @@
 import VueRouter from "vue-router";
 import About from "../pages/About";
 import Home from "../pages/Home";
+import News from "../pages/News";
+import Message from "../pages/Message";
+import Detail from "../pages/Detail";
 
 // 创建一个路由器
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         {
             path: '/about',
@@ -12,7 +15,42 @@ export default new VueRouter({
         },
         {
             path: '/home',
-            component: Home
+            component: Home,
+            children: [
+                {
+                    path: 'news',
+                    component: News,
+                    meta: {isAuth: true}
+                },
+                {
+                    path: 'message',
+                    component: Message,
+                    meta: {isAuth: true},
+                    children: [
+                        {
+                            // 路由命名
+                            name: 'detail',
+                            path: 'detail/:id/:msg',
+                            component: Detail,
+                            // props的第二种写法，值为布尔值，若布尔值为真，就会把该路由组件收到的所有params参数，以props的形式传给Detail组件
+                            // props:true
+                            // props的第三种写法 函数
+                            props($router) {
+                                return {id: $router.params.id, msg: $router.params.msg}
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 })
+router.beforeEach(function (to, from, next) {
+   if (to.meta.isAuth){
+       next()
+   }else {
+       next()
+   }
+})
+
+export default router
