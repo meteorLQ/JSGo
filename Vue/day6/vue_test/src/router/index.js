@@ -11,16 +11,25 @@ const router = new VueRouter({
     routes: [
         {
             path: '/about',
-            component: About
+            component: About,
+
+            meta:{title:'关于',isAuth: true},
+            // 独享路由守卫
+            beforeEnter:(to, from, next)=>{
+                if (to.meta.isAuth){
+                    alert("暂无权限")
+                }
+            }
         },
         {
             path: '/home',
             component: Home,
+            meta:{title:'主页'},
             children: [
                 {
                     path: 'news',
                     component: News,
-                    meta: {isAuth: true}
+                    meta: {isAuth: true,title:'主页'}
                 },
                 {
                     path: 'message',
@@ -45,12 +54,20 @@ const router = new VueRouter({
         }
     ]
 })
+// 全局前置路由守卫---初始化的时候被调用、每次路由切换之前被调用
 router.beforeEach(function (to, from, next) {
    if (to.meta.isAuth){
-       next()
+          // next()
+           alert("暂无权限")
    }else {
        next()
    }
 })
+// 全局后置路由守卫-初始化的时候被调用、每次路由切换之后被调用
+router.afterEach((to, from)=>{
+    document.title=to.meta.title||'硅谷系统'
+})
+
+
 
 export default router
