@@ -1,28 +1,28 @@
 <template>
-  <div class="col-xs-offset-2 col-xs-8">
-    <div class="page-header">
-      <h2>Vue Router D111emo</h2>
-      <button @click="forward">前进</button>
-      <button @click="back">后退</button>
-      <button @click="go">GO</button>
+  <div>
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
+    <hr>
+    <div class="block">
+      <span class="demonstration">默认</span>
+      <el-date-picker
+          v-model="value1"
+          type="date"
+          placeholder="选择日期">
+      </el-date-picker>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Banner",
-  methods: {
-    back() {
-      this.$router.back()
-    },
-    forward() {
-      this.$router.forward()
-    },
-    go(){
-      this.$router.go(2)
-    }
-  }
+  name: "Banner"
 }
 </script>
 

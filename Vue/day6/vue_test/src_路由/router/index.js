@@ -8,18 +8,19 @@ import Detail from "../pages/Detail";
 
 // 创建一个路由器
 const router = new VueRouter({
+    mode:'hash',
     routes: [
         {
             path: '/about',
             component: About,
 
-            meta:{title:'关于',isAuth: true},
+            meta:{title:'关于'}
             // 独享路由守卫
-            beforeEnter:(to, from, next)=>{
-                if (to.meta.isAuth){
-                    alert("暂无权限")
-                }
-            }
+            // beforeEnter:(to, from, next)=>{
+            //     if (to.meta.isAuth){
+            //         alert("暂无权限")
+            //     }
+            // }
         },
         {
             path: '/home',
