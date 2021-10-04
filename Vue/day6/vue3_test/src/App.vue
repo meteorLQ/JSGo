@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref,reactive} from 'vue'
 export default {
   name: 'App',
   setup(){
     // 数据
     let name=ref('张三');
     let age=ref(18);
-    let job=ref({
+    let job=reactive({
       type:'Java工程师',
       money:'18000'
     })
@@ -23,7 +23,7 @@ export default {
     function change() {
       name.value='李四';
       age.value='25';
-      job.value.type='前端工程师';
+      job.type='前端工程师';
     }
     return{name,age,change,job}
   }
