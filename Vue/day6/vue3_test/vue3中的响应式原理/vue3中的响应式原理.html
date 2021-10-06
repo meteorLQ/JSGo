@@ -6,12 +6,29 @@
 </head>
 <body>
 <script type="text/javascript">
-    let person={
-        name:'张三',
-        age:'26'
+    let person = {
+        name: '张三',
+        age: '26'
     }
 
     // 模拟Vue3中实现响应式
+    const p = new Proxy(person, {
+        // 有人读取p的某个属性时调用
+        get(target, propName, receiver) {
+            console.log(`有人获取${propName}属性`);
+            return target[propName];
+        },
+        // 有人修改p的某个属性或给p追加某个属性时调用
+        set(target, propName, value, receiver) {
+            console.log(`有人修改${propName}属性`);
+            target[propName]=value;
+        },
+        // 有人删除p的某个属性时调用
+        deleteProperty(target, propName) {
+            console.log(`有人删除${propName}属性`);
+            delete target[propName];
+        }
+    });
 </script>
 </body>
 </html>
