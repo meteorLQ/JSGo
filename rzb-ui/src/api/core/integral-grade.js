@@ -6,3 +6,10 @@ export function list() {
     method: 'get'
   })
 }
+
+export function deleteById(id) {
+  return request({
+    url: '/core/integralGrade/delete/'+id,
+    method: 'delete'
+  })
+}
