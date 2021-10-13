@@ -13,3 +13,12 @@ export function deleteById(id) {
     method: 'delete'
   })
 }
+
+export function save(integralGrade) {
+  return request({
+    baseURL:'/dev-api',
+    url: '/core/integralGrade/save',
+    method: 'post',
+    data: integralGrade
+  })
+}
