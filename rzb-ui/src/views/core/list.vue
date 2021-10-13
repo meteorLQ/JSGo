@@ -40,19 +40,20 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteById(id).then(response => {
-          this.$message({
-            type: 'success',
-            message: response.msg
-          });
-          this.fetchDate();
-        })
-
-      }).catch(() => {
+        return deleteById(id)
+      }).then(response => {
         this.$message({
-          type: 'info',
-          message: '已取消删除'
+          type: 'success',
+          message: response.msg
         });
+        this.fetchDate();
+      }).catch((error) => {
+        if ('cancel' === error) {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        }
       });
 
     }
