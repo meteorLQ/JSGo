@@ -73,15 +73,15 @@
 
     <!-- 添加或修改参数配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form"  label-width="80px">
-        <el-form-item label="字典名称" prop="dictName">
-          <el-input v-model="form.dictName" placeholder="请输入字典名称" />
+      <el-form ref="form" :model="integralGrade"  label-width="100px">
+        <el-form-item label="借款额度">
+          <el-input-number v-model="integralGrade.borrowAmount" :min="0"></el-input-number>
         </el-form-item>
-        <el-form-item label="字典类型" prop="dictType">
-          <el-input v-model="form.dictType" placeholder="请输入字典类型" />
+        <el-form-item label="积分开始区间">
+          <el-input-number v-model="integralGrade.integralStart" :min="0"></el-input-number>
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+        <el-form-item label="积分结束区间">
+          <el-input-number v-model="integralGrade.integralEnd" :min="0"></el-input-number>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -102,7 +102,7 @@ export default {
     return {
       open: false,
       list: [],
-      form:{}
+      integralGrade:{}
     }
   },
   created() {
