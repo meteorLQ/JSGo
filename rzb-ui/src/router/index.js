@@ -117,6 +117,22 @@ export const constantRoutes = [
         hidden: true
       }
     ]
+  },
+  {
+    path: '/dict',
+    component: Layout,
+    name: 'integralGrade',
+    redirect: '/dict/list',
+    meta: {title: '系统管理',icon: 'el-icon-s-marketing'},
+    alwaysShow: true,
+    children: [
+      {
+        path: 'list',
+        name: 'dcitList',
+        component: () => import('@/views/dict/index'),
+        meta: {title: '字典管理', icon: 'form'}
+      }
+    ]
   }
 ]
 
