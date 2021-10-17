@@ -8,53 +8,57 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:dict:add']"
-        >新增</el-button>
+        >新增
+        </el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['system:dict:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['system:dict:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:dict:export']"
-        >导出</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-refresh"
-          size="mini"
-          @click="handleRefreshCache"
-          v-hasPermi="['system:dict:remove']"
-        >刷新缓存</el-button>
-      </el-col>
-<!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
+      <!--      <el-col :span="1.5">
+              <el-button
+                type="success"
+                plain
+                icon="el-icon-edit"
+                size="mini"
+                :disabled="single"
+                @click="handleUpdate"
+                v-hasPermi="['system:dict:edit']"
+              >修改
+              </el-button>
+            </el-col>-->
+      <!--      <el-col :span="1.5">
+              <el-button
+                type="danger"
+                plain
+                icon="el-icon-delete"
+                size="mini"
+                :disabled="multiple"
+                @click="handleDelete"
+                v-hasPermi="['system:dict:remove']"
+              >删除
+              </el-button>
+            </el-col>-->
+      <!--      <el-col :span="1.5">
+              <el-button
+                type="warning"
+                plain
+                icon="el-icon-download"
+                size="mini"
+                :loading="exportLoading"
+                @click="handleExport"
+                v-hasPermi="['system:dict:export']"
+              >导出
+              </el-button>
+            </el-col>-->
+      <!--      <el-col :span="1.5">
+              <el-button
+                type="danger"
+                plain
+                icon="el-icon-refresh"
+                size="mini"
+                @click="handleRefreshCache"
+                v-hasPermi="['system:dict:remove']"
+              >刷新缓存
+              </el-button>
+            </el-col>-->
+      <!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
     </el-row>
 
     <el-table :data="list" border stripe>
@@ -63,9 +67,25 @@
       <el-table-column prop="integralStart" label="积分区间开始" width="180"/>
       <el-table-column prop="integralEnd" label="积分区间结束" width="180"/>
       <el-table-column label="操作" header-align="center" width="180">
-        <template slot-scope="scope">
+<!--        <template slot-scope="scope">
           <el-button size="mini">编辑</el-button>
           <el-button size="mini" type="danger" @click="deleteById(scope.row.id)">删除</el-button>
+        </template>-->
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+          >修改
+          </el-button>
+          <el-button
+            size="mini"
+            type="danger"
+            icon="el-icon-delete"
+            @click="deleteById(scope.row.id)"
+          >删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -73,19 +93,19 @@
 
     <!-- 添加或修改参数配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="integralGrade"  label-width="100px">
-        <el-form-item label="借款额度">
+      <el-form ref="form" :model="integralGrade" label-width="100px">
+        <el-form-item label="借款额度" prop="borrowAmount">
           <el-input-number v-model="integralGrade.borrowAmount" :min="0"></el-input-number>
         </el-form-item>
-        <el-form-item label="积分开始区间">
+        <el-form-item label="积分开始区间" prop="integralStart">
           <el-input-number v-model="integralGrade.integralStart" :min="0"></el-input-number>
         </el-form-item>
-        <el-form-item label="积分结束区间">
+        <el-form-item label="积分结束区间" prop="integralEnd">
           <el-input-number v-model="integralGrade.integralEnd" :min="0"></el-input-number>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button type="primary" @click="saveOrUpdate">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
@@ -94,7 +114,8 @@
 </template>
 
 <script>
-import {deleteById, list} from '@/api/core/integral-grade'
+import {deleteById, list, save, getData} from '@/api/core/integral-grade'
+
 
 export default {
   // name: "list",
@@ -102,13 +123,48 @@ export default {
     return {
       open: false,
       list: [],
-      integralGrade:{}
+      integralGrade: {}
     }
   },
   created() {
     this.fetchDate()
   },
   methods: {
+    /** 修改按钮操作 */
+    handleUpdate(row) {
+      this.reset();
+      const id = row.id
+      getData(id).then(response => {
+        this.integralGrade = response.data;
+        this.open = true;
+        this.title = "修改数据";
+      });
+    },
+    saveOrUpdate() {
+      this.saveData()
+    },
+    saveData() {
+      save(this.integralGrade).then(res => {
+        this.open = false;
+        this.$message({
+          type: 'success',
+          message: res.msg
+        });
+        this.fetchDate();
+      })
+    },
+    update() {
+
+    },
+    cancel() {
+      this.open = false;
+      this.reset();
+    },
+    // 表单重置
+    reset() {
+
+      this.resetForm("form");
+    },
     handleAdd() {
       //this.reset();
       this.open = true;

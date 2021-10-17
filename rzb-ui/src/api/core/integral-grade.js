@@ -16,9 +16,16 @@ export function deleteById(id) {
 
 export function save(integralGrade) {
   return request({
-    baseURL:'/dev-api',
     url: '/core/integralGrade/save',
     method: 'post',
     data: integralGrade
+  })
+}
+
+
+export function getData(id) {
+  return request({
+    url: '/core/integralGrade/getById/'+id,
+    method: 'get'
   })
 }

@@ -13,7 +13,14 @@ import store from './store'
 import router from './router'
 
 import '@/icons' // icon
-import '@/permission' // permission control
+import '@/permission'
+
+import {resetForm} from "@/utils/rzbUtil"; // permission control
+
+// 全局方法挂载
+Vue.prototype.resetForm = resetForm
+
+
 
 /**
  * If you don't want to use mock-server
