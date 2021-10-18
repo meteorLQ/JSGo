@@ -61,7 +61,7 @@
       <!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
     </el-row>
 
-    <el-table :data="list" border stripe>
+    <el-table :data="list"  >
       <el-table-column type="index" width="50"/>
       <el-table-column prop="borrowAmount" label="借款额度" header-align="center" width="180"/>
       <el-table-column prop="integralStart" label="积分区间开始" width="180"/>
