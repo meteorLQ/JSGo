@@ -11,14 +11,7 @@
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="菜单状态" clearable size="small">
-          <el-option
-            v-for="dict in dict.type.sys_normal_disable"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
-        </el-select>
+
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -51,7 +44,6 @@
 
     <el-table
       v-if="refreshTable"
-      v-loading="loading"
       :data="menuList"
       row-key="menuId"
       :default-expand-all="isExpandAll"
@@ -67,9 +59,7 @@
       <el-table-column prop="perms" label="权限标识" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column prop="component" label="组件路径" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column prop="status" label="状态" width="80">
-        <template slot-scope="scope">
-          <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
-        </template>
+
       </el-table-column>
       <el-table-column label="创建时间" align="center" prop="createTime">
         <template slot-scope="scope">
@@ -239,11 +229,7 @@
                 显示状态
               </span>
               <el-radio-group v-model="form.visible">
-                <el-radio
-                  v-for="dict in dict.type.sys_show_hide"
-                  :key="dict.value"
-                  :label="dict.value"
-                >{{dict.label}}</el-radio>
+
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -256,11 +242,7 @@
                 菜单状态
               </span>
               <el-radio-group v-model="form.status">
-                <el-radio
-                  v-for="dict in dict.type.sys_normal_disable"
-                  :key="dict.value"
-                  :label="dict.value"
-                >{{dict.label}}</el-radio>
+
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -280,18 +262,20 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
+import {listByParentId} from "@/api/dict/dict";
+
 export default {
   name: "Menu",
   dicts: ['sys_show_hide', 'sys_normal_disable'],
-  components: { IconSelect },
+  components: {  },
   data() {
     return {
       // 遮罩层
       loading: true,
       // 显示搜索条件
       showSearch: true,
-      // 菜单表格树数据
-      menuList: [],
+      // 字典表格树数据
+      dictList: [],
       // 菜单树选项
       menuOptions: [],
       // 弹出层标题
@@ -334,8 +318,8 @@ export default {
     /** 查询菜单列表 */
     getList() {
       this.loading = true;
-      listMenu(this.queryParams).then(response => {
-        this.menuList = this.handleTree(response.data, "menuId");
+      listByParentId(1).then(response => {
+        this.dictList = response.data;
         this.loading = false;
       });
     },
