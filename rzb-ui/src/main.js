@@ -16,10 +16,11 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission'
 
-import {resetForm} from "@/utils/rzbUtil"; // permission control
+import {resetForm,parseTime} from "@/utils/rzbUtil"; // permission control
 
 // 全局方法挂载
 Vue.prototype.resetForm = resetForm
+Vue.prototype.parseTime = parseTime
 
 
 
