@@ -48,7 +48,7 @@
       :data="dictList"
       row-key="id" lazy :load="load">
       <!--      :default-expand-all="isExpandAll"-->
-      <!--      :tree-props="{children: 'children', hasChildren: 'hasChildren'}"-->
+
 
       <el-table-column prop="menuName" label="名称" width="160">
         <template v-slot="scope">
