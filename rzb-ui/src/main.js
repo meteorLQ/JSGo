@@ -18,10 +18,15 @@ import '@/permission'
 
 import {resetForm,parseTime} from "@/utils/rzbUtil"; // permission control
 
+// 自定义表格工具组件
+import RightToolbar from "@/components/RightToolbar"
+
 // 全局方法挂载
 Vue.prototype.resetForm = resetForm
 Vue.prototype.parseTime = parseTime
 
+// 全局组件挂载
+Vue.component('RightToolbar', RightToolbar)
 
 
 /**
