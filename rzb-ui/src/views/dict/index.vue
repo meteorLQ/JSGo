@@ -1,17 +1,14 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch">
-      <el-form-item label="菜单名称" prop="menuName">
+      <el-form-item label="字典名称" prop="menuName">
         <el-input
           v-model="queryParams.menuName"
-          placeholder="请输入菜单名称"
+          placeholder="请输入字典名称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>
-      <el-form-item label="状态" prop="status">
-
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -82,7 +79,7 @@
             size="mini"
             type="text"
             icon="el-icon-plus"
-            @click="handleAdd(scope.row)"
+            @click="handleAdd(scope.row)" v-if="scope.row.parentId==1"
           >新增
           </el-button>
           <el-button
@@ -354,18 +351,8 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {
-        menuId: undefined,
-        parentId: 0,
-        menuName: undefined,
-        icon: undefined,
-        menuType: "M",
-        orderNum: undefined,
-        isFrame: "1",
-        isCache: "0",
-        visible: "0",
-        status: "0"
-      };
+      // this.form = {
+      // };
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -380,9 +367,9 @@ export default {
     /** 新增按钮操作 */
     handleAdd(row) {
       this.reset();
-      this.getTreeselect();
-      if (row != null && row.menuId) {
-        this.form.parentId = row.menuId;
+      //this.getTreeselect();
+      if (row != null && row.id) {
+        this.form.parentId = row.id;
       } else {
         this.form.parentId = 0;
       }
