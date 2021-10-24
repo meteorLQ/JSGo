@@ -6,3 +6,11 @@ export function listByParentId(parentId) {
     method: 'get'
   })
 }
+
+export function save(dict) {
+  return request({
+    url: '/dict/saveDict',
+    method: 'post',
+    data: dict
+  })
+}

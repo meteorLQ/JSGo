@@ -41,8 +41,7 @@
     </el-row>
 
     <el-table
-
-      :data="dictList"
+      :data="dictList" :key="symbolKey"
       row-key="id" lazy :load="load">
       <!--      :default-expand-all="isExpandAll"-->
 
@@ -128,7 +127,7 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
-import {listByParentId} from "@/api/dict/dict";
+import {listByParentId,save} from "@/api/dict/dict";
 
 export default {
   name: "Menu",
@@ -136,6 +135,7 @@ export default {
   components: {},
   data() {
     return {
+      symbolKey:'',
       // 遮罩层
       loading: true,
       // 显示搜索条件
@@ -236,10 +236,10 @@ export default {
       if (row != null && row.id) {
         this.form.parentId = row.id;
       } else {
-        this.form.parentId = 0;
+        this.form.parentId = 1;
       }
       this.open = true;
-      this.title = "添加字典类型";
+      this.title = "添加字典";
     },
     /** 展开/折叠操作 */
     toggleExpandAll() {
@@ -263,16 +263,23 @@ export default {
     submitForm: function () {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.menuId != undefined) {
-            updateMenu(this.form).then(response => {
-              this.$modal.msgSuccess("修改成功");
+          if (this.form.id != undefined) {
+            updateMenu(this.form).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.msg
+              });
               this.open = false;
               this.getList();
             });
           } else {
-            addMenu(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
+            save(this.form).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.msg
+              });
               this.open = false;
+              this.symbolKey=Symbol(new Date().toString())
               this.getList();
             });
           }
