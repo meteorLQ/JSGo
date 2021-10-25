@@ -127,7 +127,7 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
-import {listByParentId,save} from "@/api/dict/dict";
+import {listByParentId,save,deleteById} from "@/api/dict/dict";
 
 export default {
   name: "Menu",
@@ -288,11 +288,14 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      this.$modal.confirm('是否确认删除名称为"' + row.menuName + '"的数据项？').then(function () {
-        return delMenu(row.menuId);
+      this.$modal.confirm('是否确认删除名称为"' + row.name + '"的数据项？').then(function () {
+        return deleteById(row.id);
       }).then(() => {
         this.getList();
-        this.$modal.msgSuccess("删除成功");
+        this.$message({
+          type: 'success',
+          message: '删除成功！'
+        });
       }).catch(() => {
       });
     },

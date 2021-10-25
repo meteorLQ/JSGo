@@ -14,3 +14,10 @@ export function save(dict) {
     data: dict
   })
 }
+
+export function deleteById(id) {
+  return request({
+    url: '/dict/delete/'+id,
+    method: 'delete'
+  })
+}
