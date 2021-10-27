@@ -21,3 +21,11 @@ export function deleteById(id) {
     method: 'delete'
   })
 }
+
+export function update(dict) {
+  return request({
+    url: '/dict/updateDict',
+    method: 'put',
+    data: dict
+  })
+}
