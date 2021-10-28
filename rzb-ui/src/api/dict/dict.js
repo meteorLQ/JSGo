@@ -29,3 +29,9 @@ export function update(dict) {
     data: dict
   })
 }
+export function getDictById(id) {
+  return request({
+    url: '/dict/getById/'+id,
+    method: 'get'
+  })
+}

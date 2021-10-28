@@ -127,7 +127,7 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
-import {listByParentId,save,deleteById} from "@/api/dict/dict";
+import {listByParentId,save,deleteById,getDictById} from "@/api/dict/dict";
 
 export default {
   name: "Menu",
