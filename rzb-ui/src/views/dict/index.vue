@@ -288,16 +288,28 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      this.$modal.confirm('是否确认删除名称为"' + row.name + '"的数据项？').then(function () {
-        return deleteById(row.id);
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       }).then(() => {
-        this.getList();
+        return deleteById(row.id)
+      }).then(response => {
         this.$message({
           type: 'success',
-          message: '删除成功！'
+          message: response.msg
         });
-      }).catch(() => {
+        this.symbolKey=Symbol(new Date().toString())
+        this.getList();
+      }).catch((error) => {
+        if ('cancel' === error) {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        }
       });
+
     },
     /*懒加载数据*/
     load(tree, treeNode, resolve) {
