@@ -127,7 +127,7 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
-import {listByParentId,save,deleteById,getDictById} from "@/api/dict/dict";
+import {listByParentId,saveOrUpdateDict,deleteById,getDictById} from "@/api/dict/dict";
 
 export default {
   name: "Menu",
@@ -216,8 +216,8 @@ export default {
     },
     // 表单重置
     reset() {
-      // this.form = {
-      // };
+      this.form = {
+      };
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -252,28 +252,18 @@ export default {
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      this.getTreeselect();
-      getMenu(row.menuId).then(response => {
+      getDictById(row.id).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改菜单";
+        this.title = "修改字典";
       });
     },
     /** 提交按钮 */
     submitForm: function () {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.id != undefined) {
-            updateMenu(this.form).then(res => {
-              this.$message({
-                type: 'success',
-                message: res.msg
-              });
-              this.open = false;
-              this.getList();
-            });
-          } else {
-            save(this.form).then(res => {
+
+            saveOrUpdateDict(this.form).then(res => {
               this.$message({
                 type: 'success',
                 message: res.msg
@@ -283,7 +273,7 @@ export default {
               this.getList();
             });
           }
-        }
+
       });
     },
     /** 删除按钮操作 */

@@ -7,9 +7,9 @@ export function listByParentId(parentId) {
   })
 }
 
-export function save(dict) {
+export function saveOrUpdateDict(dict) {
   return request({
-    url: '/dict/saveDict',
+    url: '/dict/saveOrUpdateDict',
     method: 'post',
     data: dict
   })
@@ -22,13 +22,6 @@ export function deleteById(id) {
   })
 }
 
-export function update(dict) {
-  return request({
-    url: '/dict/updateDict',
-    method: 'put',
-    data: dict
-  })
-}
 export function getDictById(id) {
   return request({
     url: '/dict/getById/'+id,
