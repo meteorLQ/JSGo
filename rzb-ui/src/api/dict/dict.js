@@ -28,3 +28,4 @@ export function getDictById(id) {
     method: 'get'
   })
 }
+
