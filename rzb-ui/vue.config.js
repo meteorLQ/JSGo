@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title || '融资宝管理系统' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -31,14 +31,11 @@ module.exports = {
   // lintOnSave: process.env.NODE_ENV === 'development',
   lintOnSave: false,
   productionSourceMap: false,
+  // webpack-dev-server 相关配置
   devServer: {
     port: port,
     open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    before: require('./mock/mock-server.js')
+    proxy:'http://localhost:8080'
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
