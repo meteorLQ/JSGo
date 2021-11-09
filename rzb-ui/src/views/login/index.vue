@@ -54,12 +54,15 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import Cookies from "js-cookie";
+
 
 export default {
   name: 'Login',
   data() {
     return {
       loginForm: {
+        rememberMe:false
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', message:"请输入您的账号"}],
@@ -93,7 +96,14 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // 记住密码
+          if (this.loginForm.rememberMe){
+
+          }else {
+
+          }
           this.$store.dispatch('user/login', this.loginForm).then(() => {
+            console.log("----------------登录中。。。。。")
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
