@@ -55,10 +55,10 @@ router.beforeEach(async(to, from, next) => {
       }
     }
   } else {
-    /* has no token*/
+    /* 没有token*/
 
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
+      // 如果在免密名单中直接登录
       next()
     } else {
       // other pages that do not have permission to access are redirected to the login page.
