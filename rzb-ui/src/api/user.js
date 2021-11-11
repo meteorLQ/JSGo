@@ -9,11 +9,10 @@ export function login(LoginUser) {
 }
 
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
     url: '/info',
-    method: 'get',
-    params: { token }
+    method: 'get'
   })
 }
 
