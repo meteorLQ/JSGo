@@ -3,6 +3,9 @@ import request from '@/utils/request'
 export function login(LoginUser) {
   return request({
     url: '/login',
+    headers: {
+      isToken: false
+    },
     method: 'post',
     data: LoginUser
   })

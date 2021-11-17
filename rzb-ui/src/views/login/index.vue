@@ -102,7 +102,7 @@ export default {
           }else {
 
           }
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          this.$store.dispatch('login', this.loginForm).then(() => {
             console.log("----------------登录中。。。。。")
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
