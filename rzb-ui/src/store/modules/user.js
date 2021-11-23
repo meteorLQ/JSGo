@@ -43,20 +43,21 @@ const user={
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
+        getInfo().then(response => {
           const { data } = response
           if (!data) {
             reject('Verification failed, please Login again.')
           }
-          const { roles, name, avatar } = data
+          const { roles, userName, avatar } = data
+          debugger
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject('getInfo: roles must be a non-null array!')
           }
           commit('SET_ROLES', roles)
-          commit('SET_NAME', name)
+          commit('SET_NAME', userName)
           commit('SET_AVATAR', avatar)
-          resolve(data)
+          resolve(response)
         }).catch(error => {
           reject(error)
         })
