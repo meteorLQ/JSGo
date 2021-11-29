@@ -52,7 +52,7 @@ const user={
           debugger
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
-            reject('getInfo: roles must be a non-null array!')
+            reject('getInfo: 角色不能为空!')
           }
           commit('SET_ROLES', roles)
           commit('SET_NAME', userName)
