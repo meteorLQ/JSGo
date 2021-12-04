@@ -7,5 +7,5 @@ function f(a:number, b:number) {
 }
 
 function testThis(){
-    alert(this)
+    //alert(this)
 }
