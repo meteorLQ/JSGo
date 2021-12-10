@@ -123,7 +123,8 @@ export default {
     return {
       open: false,
       list: [],
-      integralGrade: {}
+      integralGrade: {},
+      title:''
     }
   },
   created() {
@@ -141,11 +142,11 @@ export default {
       });
     },
     saveOrUpdate() {
-      if (this.integralGrade.id != undefined) {
+      //if (this.integralGrade.id == undefined) {
         this.saveData()
-      } else {
-
-      }
+      // } else {
+      //
+      // }
     },
     saveData() {
       save(this.integralGrade).then(res => {
@@ -170,7 +171,7 @@ export default {
       this.resetForm("form");
     },
     handleAdd() {
-      //this.reset();
+      this.reset();
       this.open = true;
       this.title = "添加积分等级";
     },
