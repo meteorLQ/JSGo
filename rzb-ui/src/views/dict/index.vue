@@ -28,21 +28,20 @@
         </el-button>
       </el-col>
       <el-col :span="1.5">
-        <el-button
-          type="info"
-          plain
-          icon="el-icon-sort"
-          size="mini"
-          @click="toggleExpandAll"
-        >展开/折叠
-        </el-button>
+        <!--        <el-button-->
+        <!--          type="info"-->
+        <!--          plain-->
+        <!--          icon="el-icon-sort"-->
+        <!--          size="mini"-->
+        <!--          @click="toggleExpandAll"-->
+        <!--        >展开/折叠-->
+        <!--        </el-button>-->
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table
-      :data="dictList" :key="symbolKey"
-      row-key="id" lazy :load="load">
+      :data="dictList" ref="table" row-key="id" lazy :load="load">
       <!--      :default-expand-all="isExpandAll"-->
 
 
@@ -127,7 +126,7 @@
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 // import IconSelect from "@/components/IconSelect";
 
-import {listByParentId,saveOrUpdateDict,deleteById,getDictById} from "@/api/dict/dict";
+import {listByParentId, saveOrUpdateDict, deleteById, getDictById} from "@/api/dict/dict";
 
 export default {
   name: "Menu",
@@ -135,7 +134,7 @@ export default {
   components: {},
   data() {
     return {
-      symbolKey:'',
+      //symbolKey:'',
       // 遮罩层
       loading: true,
       // 显示搜索条件
@@ -159,6 +158,8 @@ export default {
       },
       // 表单参数
       form: {},
+      // map来缓存懒加载后的tree数据
+      maps: new Map(),
       // 表单校验
       rules: {
         name: [
@@ -189,26 +190,6 @@ export default {
         this.loading = false;
       });
     },
-    /** 转换菜单数据结构 */
-    normalizer(node) {
-      if (node.children && !node.children.length) {
-        delete node.children;
-      }
-      return {
-        id: node.menuId,
-        label: node.menuName,
-        children: node.children
-      };
-    },
-    /** 查询菜单下拉树结构 */
-    getTreeselect() {
-      listMenu().then(response => {
-        this.menuOptions = [];
-        const menu = {menuId: 0, menuName: '主类目', children: []};
-        menu.children = this.handleTree(response.data, "menuId");
-        this.menuOptions.push(menu);
-      });
-    },
     // 取消按钮
     cancel() {
       this.open = false;
@@ -216,8 +197,7 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {
-      };
+      this.form = {};
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -241,14 +221,6 @@ export default {
       this.open = true;
       this.title = "添加字典";
     },
-    /** 展开/折叠操作 */
-    toggleExpandAll() {
-      this.refreshTable = false;
-      this.isExpandAll = !this.isExpandAll;
-      this.$nextTick(() => {
-        this.refreshTable = true;
-      });
-    },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
@@ -263,16 +235,22 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
 
-            saveOrUpdateDict(this.form).then(res => {
-              this.$message({
-                type: 'success',
-                message: res.msg
-              });
-              this.open = false;
-              this.symbolKey=Symbol(new Date().toString())
-              this.getList();
+          saveOrUpdateDict(this.form).then(res => {
+            this.$message({
+              type: 'success',
+              message: res.msg
             });
-          }
+            this.open = false;
+            //this.symbolKey=Symbol(new Date().toString())
+            debugger
+            console.log(this.form.parentId)
+            if (this.form.parentId == 1) {
+              this.getList();
+            } else {
+              this.afreshLoad(this.form.parentId)
+            }
+          });
+        }
 
       });
     },
@@ -289,8 +267,17 @@ export default {
           type: 'success',
           message: response.msg
         });
-        this.symbolKey=Symbol(new Date().toString())
-        this.getList();
+        debugger
+        console.log(row)
+        const {id}=row
+        console.log(id)
+
+        if (row.parentId == 1 || row.parentId == undefined) {
+          this.getList();
+        } else {
+          this.afreshLoad(row.parentId)
+        }
+
       }).catch((error) => {
         if ('cancel' === error) {
           this.$message({
@@ -303,11 +290,23 @@ export default {
     },
     /*懒加载数据*/
     load(tree, treeNode, resolve) {
+      this.maps.set(tree.id, {tree, treeNode, resolve})
       listByParentId(tree.id).then(response => {
-        resolve(response.data)
+          resolve(response.data)
       });
-
-
+    },
+    // 用户删除或新增节点后刷新数据
+    afreshLoad(id) {
+      debugger
+      if (this.maps.get(id)!=undefined){
+        const {tree, treeNode, resolve} = this.maps.get(id);
+        listByParentId(tree.id).then(response => {
+          this.$set(this.$refs.table.store.states.lazyTreeNodeMap,id,[])
+          resolve(response.data)
+        });
+      }else {
+        this.getList();
+      }
     }
   }
 };
