@@ -242,8 +242,6 @@ export default {
             });
             this.open = false;
             //this.symbolKey=Symbol(new Date().toString())
-            debugger
-            console.log(this.form.parentId)
             if (this.form.parentId == 1) {
               this.getList();
             } else {
@@ -267,10 +265,7 @@ export default {
           type: 'success',
           message: response.msg
         });
-        debugger
-        console.log(row)
         const {id}=row
-        console.log(id)
 
         if (row.parentId == 1 || row.parentId == undefined) {
           this.getList();
@@ -297,7 +292,6 @@ export default {
     },
     // 用户删除或新增节点后刷新数据
     afreshLoad(id) {
-      debugger
       if (this.maps.get(id)!=undefined){
         const {tree, treeNode, resolve} = this.maps.get(id);
         listByParentId(tree.id).then(response => {
