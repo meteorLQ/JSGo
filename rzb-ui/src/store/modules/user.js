@@ -49,7 +49,6 @@ const user={
             reject('Verification failed, please Login again.')
           }
           const { roles, userName, avatar } = data
-          debugger
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject('getInfo: 角色不能为空!')

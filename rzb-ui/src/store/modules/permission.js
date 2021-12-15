@@ -51,7 +51,6 @@ const actions = {
   GenerateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
-      debugger
       if (roles=='admin') {
         accessedRoutes = asyncRoutes || []
       } else {
