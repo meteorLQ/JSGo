@@ -134,7 +134,6 @@ export default {
   components: {},
   data() {
     return {
-      //symbolKey:'',
       // 遮罩层
       loading: true,
       // 显示搜索条件
@@ -241,7 +240,6 @@ export default {
               message: res.msg
             });
             this.open = false;
-            //this.symbolKey=Symbol(new Date().toString())
             if (this.form.parentId == 1) {
               this.getList();
             } else {
