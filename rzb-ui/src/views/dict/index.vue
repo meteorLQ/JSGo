@@ -100,12 +100,12 @@
               <el-input v-model="form.name" placeholder="请输入名称"/>
             </el-form-item>
           </el-col>
-          <el-col v-if="this.form.parentId==0">
+          <el-col v-if="this.form.parentId==1">
             <el-form-item label="编码" prop="dictCode">
               <el-input v-model="form.dictCode" controls-position="right" :min="0"/>
             </el-form-item>
           </el-col>
-          <el-col v-if="this.form.parentId!=0">
+          <el-col v-if="this.form.parentId!=1">
             <el-form-item label="值" prop="value">
               <el-input v-model="form.value" controls-position="right" :min="0"/>
             </el-form-item>
