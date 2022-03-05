@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>条件渲染</title>
+    <title>基本列表</title>
     <script type="text/javascript" src="../../js/vue.js"></script>
 </head>
 <body>
@@ -18,19 +18,20 @@
     let vue = new Vue({
         el: '#root',
         data: {
-            persons: [{
-                id: 1,
-                name: '张三',
-                age: 20
-            }, {
-                id: 2,
-                name: '李四',
-                age: 24
-            }, {
-                id: 3,
-                name: '王五',
-                age: 18
-            }
+            persons: [
+                {
+                    id: 1,
+                    name: '张三',
+                    age: 20
+                }, {
+                    id: 2,
+                    name: '李四',
+                    age: 24
+                }, {
+                    id: 3,
+                    name: '王五',
+                    age: 18
+                }
             ]
         }
     });

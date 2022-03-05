@@ -11,8 +11,10 @@
     <div>
         <button @click="add()">add</button>
         <ul>
-            <li v-for="p in persons" :key="p.id">{{p.name}}-{{p.age}}</li>
-
+            <li v-for="(p,index) in persons" :key="index">
+                {{p.name}}-{{p.age}}
+                <input type="text">
+            </li>
         </ul>
     </div>
 </div>
@@ -38,12 +40,18 @@
             }
             ]
         },
-        methods:{
-            add(){
-                let a={id:4,name:'赵六',age:27};
+        methods: {
+            add() {
+                let a = {id: 4, name: '赵六', age: 27};
                 this.persons.unshift(a)
             }
         }
     });
 </script>
 </html>
+<script>
+    import Index from "../../../rzb-ui/src/layout/components/Sidebar";
+    export default {
+        components: {Index}
+    }
+</script>
