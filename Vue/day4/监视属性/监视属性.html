@@ -7,7 +7,7 @@
 <body>
 <div id="root">
     <h2>今天天气很{{info}}</h2>
-    <button v-on:click="change">切换天气</button>
+    <button @click="change">切换天气</button>
 </div>
 </body>
 <!--
@@ -20,6 +20,8 @@
 -->
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript">
+    Vue.config.productionTip = false;
+
     let vm=new Vue({
         el: '#root',
         data: {
@@ -36,26 +38,26 @@
             }
         },
         // 第一种写法
-        // watch: {
-        //     isHot: {
-        //         // 初始化时执行handler
-        //         immediate: true,
-        //         handler(nv, ov) {
-        //             console.log('nv' + nv)
-        //             console.log('nv' + ov)
-        //             console.log("发现属于被修改");
-        //         }
-        //     }
-        // }
-    })
-
-    vm.$watch('isHot',{
-        immediate: true,
-        handler(nv, ov) {
-            console.log('nv' + nv)
-            console.log('nv' + ov)
-            console.log("发现属于被修改");
+        watch: {
+            isHot: {
+                // 初始化时执行handler
+                // immediate: true,
+                handler(newValue, oldVale) {
+                    console.log('newValue：' + newValue)
+                    console.log('oldVale：' + oldVale)
+                    console.log("发现属于被修改");
+                }
+            }
         }
     })
+
+    // vm.$watch('isHot',{
+    //     immediate: true,
+    //     handler(nv, ov) {
+    //         console.log('nv' + nv)
+    //         console.log('nv' + ov)
+    //         console.log("发现属于被修改");
+    //     }
+    // })
 </script>
 </html>

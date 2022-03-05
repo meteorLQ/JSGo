@@ -32,16 +32,16 @@
         },
         watch: {
             // 简写
-            // isHot(nv, ov) {
-            //     console.log('nv' + nv)
-            //     console.log('nv' + ov)
-            //     console.log("发现属于被修改");
-            // }
+            isHot(nv, ov) {
+                console.log('nv' + nv)
+                console.log('nv' + ov)
+                console.log("发现属于被修改");
+            }
         }
     })
 
-    vm.$watch('isHot',function (nv, ov) {
-        console.log('isHot被修改了',nv,ov)
-    })
+    // vm.$watch('isHot',function (nv, ov) {
+    //     console.log('isHot被修改了',nv,ov)
+    // })
 </script>
 </html>

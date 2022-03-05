@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识VUE</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+</div>
+<script type="text/javascript">
+
+    let age=18;
+    let person = {
+        id: 1,
+        name: '李隼',
+    }
+
+    Object.defineProperty(person, 'age', {
+        get() {
+            return age
+        },
+        set(v) {
+            age=v
+        }
+    })
+    console.log(person)
+
+</script>
+</body>
+</html>

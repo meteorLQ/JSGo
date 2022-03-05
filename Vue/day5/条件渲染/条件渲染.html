@@ -34,8 +34,8 @@
     <h2 >当前值是{{n}}</h2>
     <button @click="n++">点我</button>
     <div v-if="n==1">java</div>
-    <div v-else-if="1">js</div>
-    <div v-else="4">C++</div>
+    <div v-else-if="n==2">js</div>
+    <div v-else>C++</div>
     <div v-show="n==3">C#</div>
     <div v-if="n==2">ts</div>
 
