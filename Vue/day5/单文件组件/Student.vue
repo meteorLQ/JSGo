@@ -14,9 +14,6 @@ export default {
       studentName: '擎天柱',
       studentAge: '110'
     }
-  },
-  components: {
-    student
   }
 }
 </script>

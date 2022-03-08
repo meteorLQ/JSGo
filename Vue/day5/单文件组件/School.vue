@@ -19,9 +19,6 @@ export default {
       schoolName: '北京大学',
       address: '北京'
     }
-  },
-  components: {
-    school
   }
 }
 

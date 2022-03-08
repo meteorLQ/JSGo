@@ -11,7 +11,7 @@
     <div>
         <button @click="add()">add</button>
         <ul>
-            <li v-for="(p,index) in persons" :key="index">
+            <li v-for="(p,index) in persons" :key="p.id">
                 {{p.name}}-{{p.age}}
                 <input type="text">
             </li>

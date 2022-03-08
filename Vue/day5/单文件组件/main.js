@@ -2,6 +2,6 @@ import App from "./App";
 
 new Vue({
     el:'#root',
-    template:'<div></div>>',
+    template:'<App></App>>',
     components:{App}
 })

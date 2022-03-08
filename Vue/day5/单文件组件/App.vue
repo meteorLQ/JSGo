@@ -6,12 +6,13 @@
 </template>
 
 <script>
-import school from './School';
-import student from './Student';
+import School from './School';
+import Student from './Student';
+
 export default {
   name: "App",
-  components:{
-    school,student
+  components: {
+    School, Student
   }
 }
 </script>
