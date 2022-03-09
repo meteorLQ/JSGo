@@ -8,7 +8,7 @@
 
 <body>
 <div id="root">
-    <school></school>
+    <student></student>
 </div>
 </body>
 
@@ -31,36 +31,16 @@
         }
     })
 
-    // 定义school组件
-    const school = Vue.extend({
-        template: `
-          <div>
-          schoolName:{{ schoolName }}
-          <br>
-          address:{{ address }}
-          <hr>
-          <student></student>
-          </div>
-        `,
-        data() {
-            return {
-                schoolName: '北京大学',
-                address: '北京'
-            }
-        },
+
+    // 创建vm
+    let vm=new Vue({
+        el: '#root',
         components: {
             student
         }
     })
 
-
-    // 创建vm
-   let vm=new Vue({
-        el: '#root',
-        components: {
-            school
-        }
-    })
+    console.log(student.prototype._proto_===vm.prototype)
 
 
 </script>

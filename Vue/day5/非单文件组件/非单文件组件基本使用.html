@@ -8,10 +8,18 @@
 
 <body>
 <div id="root">
-        <school></school>
-        <school></school>
-        <school></school>
-        <school></school>
+    <hello></hello>
+    <school></school>
+    <hr>
+    <student></student>
+</div>
+
+<div id="root2">
+    <h2>root2</h2>
+    <hello></hello>
+    <school></school>
+    <hr>
+    <student></student>
 </div>
 </body>
 
@@ -34,12 +42,48 @@
         }
     })
 
+    const student = Vue.extend({
+        template: `
+          <div>
+          studentName:{{ studentName }}
+          <br>
+          studentAge:{{ studentAge }}
+          </div>
+        `,
+        data() {
+            return {
+                studentName: '擎天柱',
+                studentAge: '110'
+            }
+        }
+    })
+
+    const hello = Vue.extend({
+        template: `
+          <div>
+          你好:{{ name }}
+          </div>
+        `,
+        data() {
+            return {
+                name: '中国'
+            }
+        }
+    })
+
+    Vue.component('hello',hello);
+
     // 创建vm
     new Vue({
         el: '#root',
         components: {
-            school
+            school,
+            student
         }
+    })
+
+    new Vue({
+        el: '#root2'
     })
 
 

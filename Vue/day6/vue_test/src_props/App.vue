@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Student name="擎天柱" :age="110"></Student>
-    <Student ></Student>
+    <Student></Student>
   </div>
 </template>
 
