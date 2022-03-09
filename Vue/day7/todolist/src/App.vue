@@ -2,9 +2,9 @@
   <div id="app">
     <div class="todo-container">
       <div class="todo-wrap">
-        <ToDoHead></ToDoHead>
-       <ToDoList></ToDoList>
-       <ToDoFooter></ToDoFooter>
+        <ToDoHead :addTodo="addTodo"></ToDoHead>
+        <ToDoList :todos="todos"></ToDoList>
+        <ToDoFooter></ToDoFooter>
       </div>
     </div>
   </div>
@@ -18,6 +18,30 @@ import ToDoList from "./components/ToDoList";
 
 export default {
   name: 'App',
+  data() {
+    return {
+      todos: [
+        {
+          id: '001',
+          title: 'vue',
+          done: true
+        }, {
+          id: '002',
+          title: 'java',
+          done: false
+        }, {
+          id: '003',
+          title: 'mysql',
+          done: false
+        }
+      ]
+    }
+  },
+  methods: {
+    addTodo(todo) {
+      this.todos.unshift(todo)
+    }
+  },
   components: {
     ToDoFooter, ToDoHead, ToDoList
   }

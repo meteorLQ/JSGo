@@ -1,11 +1,7 @@
 <template>
   <ul class="todo-main">
 
-    <ToDoItem/>
-    <ToDoItem/>
-    <ToDoItem/>
-    <ToDoItem/>
-    <ToDoItem/>
+    <ToDoItem v-for="todo in todos" :key="todo.id" :todoO="todo"/>
   </ul>
 </template>
 
@@ -15,6 +11,7 @@ import ToDoItem from "./ToDoItem";
 export default {
   name: "ToDoList",
   components: {ToDoItem},
+  props:['todos'],
   comments: {
     ToDoItem
   }
