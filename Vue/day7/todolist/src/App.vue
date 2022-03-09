@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <ToDoHead :addTodo="addTodo"></ToDoHead>
-        <ToDoList :todos="todos"></ToDoList>
+        <ToDoList :todos="todos" :checkToDo="checkToDo"></ToDoList>
         <ToDoFooter></ToDoFooter>
       </div>
     </div>
@@ -40,6 +40,13 @@ export default {
   methods: {
     addTodo(todo) {
       this.todos.unshift(todo)
+    },
+    checkToDo(id) {
+      this.todos.forEach((todo) => {
+        if (todo.id==id){
+          todo.done=!todo.done
+        }
+      })
     }
   },
   components: {
