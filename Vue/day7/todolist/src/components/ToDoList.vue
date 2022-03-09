@@ -1,19 +1,11 @@
 <template>
   <ul class="todo-main">
-    <li>
-      <label>
-        <input type="checkbox"/>
-        <span>xxxxx</span>
-      </label>
-      <button class="btn btn-danger" style="display:none">删除</button>
-    </li>
-    <li>
-      <label>
-        <input type="checkbox"/>
-        <span>yyyy</span>
-      </label>
-      <button class="btn btn-danger" style="display:none">删除</button>
-    </li>
+
+    <ToDoItem/>
+    <ToDoItem/>
+    <ToDoItem/>
+    <ToDoItem/>
+    <ToDoItem/>
   </ul>
 </template>
 
@@ -22,6 +14,7 @@ import ToDoItem from "./ToDoItem";
 
 export default {
   name: "ToDoList",
+  components: {ToDoItem},
   comments: {
     ToDoItem
   }
