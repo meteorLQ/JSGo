@@ -3,7 +3,7 @@
     <label>
       <input type="checkbox" :checked="todoO.done" @change="checkToDo(todoO.id)"/>
       <span v-show="!todoO.isEdit">{{todoO.title}}</span>
-      <input v-show="todoO.isEdit" type="text" :value="todoO.title" @blur="blurToDo(todoO,$event)">
+      <input ref="inputTitle" v-show="todoO.isEdit" type="text" :value="todoO.title" @blur="blurToDo(todoO,$event)">
     </label>
     <button class="btn btn-danger" @click="deleteToDo(todoO.id)">删除</button>
     <button  v-show="!todoO.isEdit" class="btn btn-edit" @click="editToDo(todoO)">编辑</button>
@@ -25,10 +25,13 @@ export default {
     },
     editToDo(todoO){
       if (todoO.hasOwnProperty('isEdit')){
-        todoO.isEdit=false
+        todoO.isEdit=true
       }else {
         this.$set(todoO,'isEdit',true)
       }
+      this.$nextTick(function (){
+        this.$refs.inputTitle.focus()
+      })
     },
     blurToDo(todoO,e){
       todoO.isEdit=false
