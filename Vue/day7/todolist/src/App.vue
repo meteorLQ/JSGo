@@ -2,9 +2,9 @@
   <div id="app">
     <div class="todo-container">
       <div class="todo-wrap">
-        <ToDoHead :addTodo="addTodo"></ToDoHead>
-        <ToDoList :todos="todos" :checkToDo="checkToDo" :deleteToDoById="deleteToDoById"></ToDoList>
-        <ToDoFooter :todos="todos" :checkedAll="checkedAll" :clearTodos="clearTodos"></ToDoFooter>
+        <ToDoHead @addTodo="addTodo"></ToDoHead>
+        <ToDoList :todos="todos"></ToDoList>
+        <ToDoFooter :todos="todos" @checkedAll="checkedAll" @clearTodos="clearTodos"></ToDoFooter>
       </div>
     </div>
   </div>
@@ -48,6 +48,13 @@ export default {
         }
       })
     },
+    updateToDoById(id,title) {
+      this.todos.forEach((todo) => {
+        if (todo.id == id) {
+          todo.title = title
+        }
+      })
+    },
     deleteToDoById(id) {
       this.todos = this.todos.filter((t) => t.id !== id)
     },
@@ -60,6 +67,16 @@ export default {
   },
   components: {
     ToDoFooter, ToDoHead, ToDoList
+  },
+  mounted() {
+    this.$bus.$on('checkToDo',this.checkToDo)
+    this.$bus.$on('deleteToDoById',this.deleteToDoById)
+    this.$bus.$on('updateToDoById',this.updateToDoById)
+  },
+  beforeDestroy() {
+    this.$bus.$off('checkToDo')
+    this.$bus.$off('deleteToDoById')
+    this.$bus.$off('updateToDoById')
   }
 }
 </script>
@@ -87,6 +104,12 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
+}
+.btn-edit {
+  color: #fff;
+  background-color: #0db4f1;
+  border: 1px solid #61dac4;
+  margin-right: 5px;
 }
 
 .btn-danger:hover {

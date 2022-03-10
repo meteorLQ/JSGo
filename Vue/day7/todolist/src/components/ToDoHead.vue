@@ -15,7 +15,6 @@ export default {
       taskName: ''
     }
   },
-  props:['addTodo'],
   methods: {
     add() {
       if (!this.taskName.trim()) return alert("请输入你的任务名称")
@@ -25,7 +24,7 @@ export default {
         title: this.taskName,
         done: false
       }
-      this.addTodo(todo)
+      this.$emit('addTodo',todo)
       this.taskName=''
     }
   }

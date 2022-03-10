@@ -1,7 +1,7 @@
 <template>
   <ul class="todo-main">
 
-    <ToDoItem v-for="todo in todos" :key="todo.id" :todoO="todo" :checkToDo="checkToDo" :deleteToDoById="deleteToDoById"/>
+    <ToDoItem v-for="todo in todos" :key="todo.id" :todoO="todo"/>
   </ul>
 </template>
 
@@ -11,7 +11,7 @@ import ToDoItem from "./ToDoItem";
 export default {
   name: "ToDoList",
   components: {ToDoItem},
-  props:['todos','checkToDo','deleteToDoById'],
+  props:['todos'],
   comments: {
     ToDoItem
   }
